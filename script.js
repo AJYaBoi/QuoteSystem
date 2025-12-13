@@ -4,7 +4,7 @@ const sheetURL =
 let quotes = [];
 let index = 0;
 
-// Fetch sheet data
+// Fetch quotes from the sheet
 async function fetchQuotes() {
   try {
     const res = await fetch(sheetURL);
@@ -15,6 +15,7 @@ async function fetchQuotes() {
   }
 }
 
+// Display next valid quote
 function showQuote() {
   if (!quotes.length) {
     document.getElementById("quoteBox").innerText = "";
@@ -26,11 +27,11 @@ function showQuote() {
     const q = quotes[index % quotes.length];
     index++;
 
+    // Convert Flagged to boolean
     const flagged = String(q.Flagged).toLowerCase() === "true";
-    const forceShow = String(q["Force Show"]).toLowerCase() === "true";
 
-    // Skip profane quotes unless Force Show is TRUE
-    if (flagged && !forceShow) {
+    // Skip flagged quotes
+    if (flagged) {
       attempts++;
       continue;
     }
@@ -41,7 +42,6 @@ function showQuote() {
       text += ` - ${q["TikTok Username"]}`;
     }
 
-    // Display the quote normally
     document.getElementById("quoteBox").innerText = text;
     return;
   }
