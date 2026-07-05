@@ -13,3 +13,19 @@ body {
   color: white;
   text-shadow: 2px 2px 6px black;
 }
+
+#statusText {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  pointer-events: none;
+  text-shadow: 1px 1px 4px black;
+}
